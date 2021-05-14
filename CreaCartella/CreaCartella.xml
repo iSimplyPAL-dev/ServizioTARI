@@ -1,0 +1,139 @@
+<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>CreaCartella</name>
+    <version>1.0.3499.26077</version>
+    <fullname>CreaCartella, Version=1.0.3499.26077, Culture=neutral, PublicKeyToken=null</fullname>
+  </assembly>
+  <members>
+    <member name="T:CreaCartella.CalcoloCartellaSingola.CalcolaCartella">
+      <summary>
+ La classe CalcolaCartella determina la singola cartella di pagamento. 
+ </summary>
+ <remarks>
+ </remarks>
+ <history>
+ 	[monicatarello]	23/09/2008	Created 
+ </history></member>
+    <member name="M:CreaCartella.CalcoloCartellaSingola.CalcolaCartella.GetCartellazione(RemotingInterfaceMotoreTarsu.MotoreTarsu.Oggetti.OggettoAnagraficaCartellazione,RemotingInterfaceMotoreTarsu.MotoreTarsu.Oggetti.OggettoRuoloPerCalcoloCartelle[],RemotingInterfaceMotoreTarsu.MotoreTarsu.Oggetti.OggettoDatiRata[],RemotingInterfaceMotoreTarsu.MotoreTarsu.Oggetti.OggettoAddizionale[],RemotingInterfaceMotoreTarsu.MotoreTarsu.Oggetti.OggettoDatiCartellazione,RemotingInterfaceMotoreTarsu.MotoreTarsu.Oggetti.OggettoCartella@,RemotingInterfaceMotoreTarsu.MotoreTarsu.Oggetti.OggettoRataCalcolata[]@,RemotingInterfaceMotoreTarsu.MotoreTarsu.Oggetti.OggettoDettaglioCartella[]@,System.String@)">
+      <summary>
+ La funzione determina la cartella di pagamento per il contribuente e gli articoli in ingresso.<br />
+ La funzione totalizza gli importi articolo a parità di anno e ne calcola le addizionali e il carico.<br />
+ L'importo per anno netto, di sanzioni, interessi, spese, addizionali e arrotondamento sono inseriti nel dettaglio.<br />
+ L'importo carico dovuto alla totalizzazione di tutti gli importi calcolati è arrotondato all'euro con la funzione ImportoArrotondatoEuroIntero.<br />
+ Dopo aver ottenuto l'importo carico si determinano le singole rate arrotondate all'euro; mentre l'ultima rata la si ottiene per differenza.<br />
+ Per ogni rata di determinano CodiceBollettino e Codeline.<br />
+ </summary>
+ <param name="objAnagrafica">Oggetto di tipo OggettoAnagraficaCartellazione contiene i dati anagrafici del contribuente.</param>
+ <param name="arrayobjRuolo">Array di oggetti di tipo OggettoRuoloPerCalcoloCartelle contiene gli articoli di ruolo.</param>
+ <param name="arrayDatiRate">Array di oggetti di tipo OggettoDatiRata contiene i dati generali delle rate da calcolare.</param>
+ <param name="arrayobjAddizionali">Array di oggetti di tipo OggettoAddizionale contiene i dati generali delle addizionali da calcolare.</param>
+ <param name="objDatiCartellazione">Oggetto di tipo OggettoDatiCartellazione contiene i dati identificati della cartella da creare.</param>
+ <param name="objCartella">Oggetto di tipo OggettoCartella restituisce la cartella creata.</param>
+ <param name="arrayobjRateCalcolate">Array di oggetti di tipo OggettoRataCalcolata restituisce le rate della cartella create.</param>
+ <param name="arrayobjDettaglioCartellaPerAnno">Array di oggetti di tipo OggettoDettaglioCartella restituisce il dettaglio della cartella creato.</param>
+ <param name="sErrRuolo">Stringa restituisce la descrizione dell'errore generato.</param>
+ <returns>Intero<br />
+ Il metodo restituisce <c>0</c> se si è verificato un errore; mentre restituisce <c>1</c> se è la creazione è avvenuta con successo.</returns>
+ <remarks>
+ Le addizionali sono calcolate con le seguente formula:<br />
+ (importo netto * valore addizionale / 100) 
+ </remarks>
+ <history>
+ 	[monicatarello]	23/09/2008	Created 
+ </history></member>
+    <member name="M:CreaCartella.CalcoloCartellaSingola.CalcolaCartella.CreaDtAddizionali">
+      <summary>
+ La funzione crea il datatable per le addizionali 
+ </summary>
+ <returns>DataTable</returns>
+ <remarks>
+ </remarks>
+ <history>
+ 	[monicatarello]	23/09/2008	Created 
+ </history></member>
+    <member name="M:CreaCartella.CalcoloCartellaSingola.CalcolaCartella.CreaDtRate">
+      <summary>
+  La funzione crea il datatable per le rate 
+ </summary>
+ <returns>DataTable</returns>
+ <remarks>
+ </remarks>
+ <history>
+ 	[monicatarello]	23/09/2008	Created 
+ </history></member>
+    <member name="M:CreaCartella.CalcoloCartellaSingola.CalcolaCartella.CodiceBollettino(System.String,System.String,System.String,System.String)">
+      <summary>
+ La funzione determina il codice bollettino per la singola rata.<br />
+ Il codice è di lunghezza 18 chr così formato:<br />
+ 5 chr	codice ente<br />
+ 2 chr	numero rata (Unica soluzione = '00', Prima rata = '01', Seconda rata = '02', ecc…)<br />
+ 2 chr	anno riferimento avviso di pagamento (ultimi due caratteri dell'anno)<br />
+ 7 chr	numero avviso<br />
+ 2 chr	CIN di controllo<br /><br />
+ L'algoritmo per la determinazione del CIN è:<br />
+ n1 = 16 caratteri (determinati in base alla logica stabilita)<br />
+ n2 = Int(n1 / 93) (risultato intero della divisione tra dividendo e 93)<br />
+ n3 = n2 * 93 (moltiplico il risultato della divisione per 93)<br />
+ resto = n1 - n3 <br />
+ CIN = resto. 
+ </summary>
+ <param name="sCodEnte">Stringa contiene il codice ente.</param>
+ <param name="sNumeroRata">Stringa contiene il numero della rata.</param>
+ <param name="sAnnoRiferimento">Stringa contiene l'anno.</param>
+ <param name="sNumeroAvviso">Stringa contiene il numero avviso.</param>
+ <returns>Stringa contiene il codice bollettino calcolato.</returns>
+ <remarks>
+ </remarks>
+ <history>
+ 	[monicatarello]	23/09/2008	Created 
+ </history></member>
+    <member name="M:CreaCartella.CalcoloCartellaSingola.CalcolaCartella.Codeline(System.String,System.String,System.Int32)">
+      <summary>
+ La funzione determina la code line per la singola rata.<br />
+ La code line è così formata:<br />
+ &lt;codice bollettino&gt;<br />
+ 9 spazi<br />
+ parte intera dell'importo formattato a 8 caratteri<br />
+ +<br />
+ parte decimale dell'importo&gt;<br />
+ conto corrente formattato a 11 caratteri (utilizzare spazi come riempimento)&lt;<br />
+ 2 spazi<br />
+ 896&gt; 
+ </summary>
+ <param name="sCodiceBollettino">Stringa contiene il codice bollettino.</param>
+ <param name="sContoCorrente">Stringa contiene il conto corrente.</param>
+ <param name="nImportoRata">Intero contiene l'importo della rata.</param>
+ <returns>Stringa contiene la code line calcolata.</returns>
+ <remarks>
+ </remarks>
+ <example>
+ &lt;069920107000000177&gt;         00000096+75&gt;   73682981&lt;  896&gt; 
+ </example>
+ <history>
+ 	[monicatarello]	23/09/2008	Created 
+ </history></member>
+    <member name="T:CreaCartella.CalcoloMassivo.CalcoloMassivoCartelle">
+      <summary>
+ La classe CalcoloMassivoCartelle determina tutte le cartelle di pagamento per un determinato blocco di articoli. 
+ </summary>
+ <remarks>
+ </remarks>
+ <history>
+ 	[monicatarello]	23/09/2008	Created 
+ </history></member>
+    <member name="M:CreaCartella.CalcoloMassivo.CalcoloMassivoCartelle.GetCartellazioneMassiva(RemotingInterfaceMotoreTarsu.MotoreTarsu.Oggetti.OggettoElaborazioneMassivaCartelle[],RemotingInterfaceMotoreTarsu.MotoreTarsu.Oggetti.OggettoDatiRata[],RemotingInterfaceMotoreTarsu.MotoreTarsu.Oggetti.OggettoAddizionale[])">
+      <summary>
+ La funzione determina, ciclando sull'array in ingresso, le singole cartelle di pagamento richiamando la funzione <c>GetCartellazione</c>. 
+ </summary>
+ <param name="oArrayOggettoElaborazioneMassivaCartelle">Array di oggetti di tipo OggettoElaborazioneMassivaCartelle contiene i contribuenti e gli articoli per i quali calcolare la cartella.</param>
+ <param name="oArrayRate">Array di oggetti di tipo OggettoDatiRata contiene i dati generali delle rate da calcolare.</param>
+ <param name="oArrayAddizionali">Array di oggetti di tipo OggettoAddizionale contiene i dati generali delle addizionali da calcolare.</param>
+ <returns>Array di oggetti di tipo OggettoOutputCartellazioneMassiva</returns>
+ <remarks>
+ </remarks>
+ <history>
+ 	[monicatarello]	23/09/2008	Created 
+ </history></member>
+  </members>
+</doc>

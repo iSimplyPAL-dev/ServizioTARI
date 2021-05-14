@@ -1,0 +1,154 @@
+<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>RemotingInterfaceMotoreTarsu</name>
+    <version>1.0.1.0</version>
+    <fullname>RemotingInterfaceMotoreTarsu, Version=1.0.1.0, Culture=neutral, PublicKeyToken=null</fullname>
+  </assembly>
+  <members>
+    <member name="F:RemotingInterfaceMotoreTarsu.MotoreTarsu.Oggetti.OggettoAddizionale._idAddizionale">
+      <summary>
+ La classe OggettoAddizionale contiene i dati generali delle addizionali da calcolare. 
+ </summary>
+ <remarks>
+ </remarks>
+ <history>
+ 	[monicatarello]	23/09/2008	Created 
+ </history></member>
+    <member name="F:RemotingInterfaceMotoreTarsu.MotoreTarsu.Oggetti.OggettoAnagraficaCartellazione._IdContribuente">
+      <summary>
+ La classe OggettoAnagraficaCartellazione contiene i dati completi dell'anagrafica per la cartella. 
+ </summary>
+ <remarks>
+ </remarks>
+ <history>
+ 	[monicatarello]	23/09/2008	Created 
+ </history></member>
+    <member name="F:RemotingInterfaceMotoreTarsu.MotoreTarsu.Oggetti.OggettoCartella._nidCartella">
+      <summary>
+ La classe OggettoCartella contiene i dati completi della cartella. 
+ </summary>
+ <remarks>
+ </remarks>
+ <history>
+ 	[monicatarello]	23/09/2008	Created 
+ </history></member>
+    <member name="F:RemotingInterfaceMotoreTarsu.MotoreTarsu.Oggetti.OggettoDatiCartellazione._sCodiceCartella">
+      <summary>
+ La classe OggettoDatiCartellazione contiene i dati identificati della cartella da generare. 
+ </summary>
+ <remarks>
+ </remarks>
+ <history>
+ 	[monicatarello]	23/09/2008	Created 
+ </history></member>
+    <member name="F:RemotingInterfaceMotoreTarsu.MotoreTarsu.Oggetti.OggettoDatiRata._nNumeroRata">
+      <summary>
+ La classe OggettoDatiRata contiene i dati completi delle rate da generare. 
+ </summary>
+ <remarks>
+ </remarks>
+ <history>
+ 	[monicatarello]	23/09/2008	Created 
+ </history></member>
+    <member name="M:RemotingInterfaceMotoreTarsu.MotoreTarsu.Oggetti.OggettoDetassazione.#ctor">
+      <summary>
+ La classe OggettoDetassazione contiene i dati completi della detassazione. 
+ </summary>
+ <remarks>
+ </remarks>
+ <history>
+ 	[monicatarello]	23/09/2008	Created 
+ </history></member>
+    <member name="F:RemotingInterfaceMotoreTarsu.MotoreTarsu.Oggetti.OggettoDettaglioCartella._nIdCartella">
+      <summary>
+ La classe OggettoDettaglioCartella contiene i dati completi del dettaglio per anno della cartella generato. 
+ </summary>
+ <remarks>
+ </remarks>
+ <history>
+ 	[monicatarello]	23/09/2008	Created 
+ </history></member>
+    <member name="F:RemotingInterfaceMotoreTarsu.MotoreTarsu.Oggetti.OggettoElaborazioneMassivaCartelle.oOggettoAnagraficaCartellazione">
+      <summary>
+ La classe OggettoElaborazioneMassivaCartelle contiene i dati dell'anagrafica, degli articoli a ruolo e gli idenficativi della cartella da generare. 
+ </summary>
+ <remarks>
+ </remarks>
+ <history>
+ 	[monicatarello]	23/09/2008	Created 
+ </history></member>
+    <member name="F:RemotingInterfaceMotoreTarsu.MotoreTarsu.Oggetti.OggettoOutputCartellazioneMassiva.oOggettoCartella">
+      <summary>
+ La classe OggettoOutputCartellazioneMassiva contiene i dati completi della cartella con articoli di ruolo, rate calcolate e dettaglio. 
+ </summary>
+ <remarks>
+ </remarks>
+ <history>
+ 	[monicatarello]	23/09/2008	Created 
+ </history></member>
+    <member name="F:RemotingInterfaceMotoreTarsu.MotoreTarsu.Oggetti.OggettoRataCalcolata._sCodiceCartella">
+      <summary>
+ La classe OggettoRataCalcolata contiene i dati completi della rata generata. 
+ </summary>
+ <remarks>
+ </remarks>
+ <history>
+ 	[monicatarello]	23/09/2008	Created 
+ </history></member>
+    <member name="M:RemotingInterfaceMotoreTarsu.MotoreTarsu.Oggetti.OggettoRiduzione.#ctor">
+      <summary>
+ La classe OggettoRiduzione contiene i dati completi della riduzione. 
+ </summary>
+ <remarks>
+ </remarks>
+ <history>
+ 	[monicatarello]	23/09/2008	Created 
+ </history></member>
+    <member name="M:RemotingInterfaceMotoreTarsu.MotoreTarsu.Oggetti.OggettoArticoloRuolo.#ctor">
+      <summary>
+ La classe OggettoArticoloRuolo contiene i dati completi dell'articolo a ruolo. 
+ </summary>
+ <remarks>
+ </remarks>
+ <history>
+ 	[monicatarello]	23/09/2008	Created 
+ </history></member>
+    <member name="M:RemotingInterfaceMotoreTarsu.MotoreTarsu.Oggetti.OggettoDichiarazioneTARSU.#ctor">
+      <summary>
+ La classe OggettoDichiarazioneTARSURidDet contiene i dati completi di dichiarazione. 
+ </summary>
+ <remarks>
+ </remarks>
+ <history>
+ 	[monicatarello]	23/09/2008	Created 
+ </history></member>
+    <member name="M:RemotingInterfaceMotoreTarsu.MotoreTarsu.Oggetti.OggettoDichiarazioneTARSURidDet.#ctor">
+      <summary>
+ La classe OggettoDichiarazioneTARSURidDet contiene i dati completi di dichiarazione con riduzioni e detassazioni. 
+ </summary>
+ <remarks>
+ </remarks>
+ <history>
+ 	[monicatarello]	23/09/2008	Created 
+ </history></member>
+    <member name="M:RemotingInterfaceMotoreTarsu.MotoreTarsu.Oggetti.OggettoRuoloCreato.#ctor">
+      <summary>
+ La classe OggettoRuoloCreato contiene i dati completi di totalizzatori ruolo e relativo array articoli. 
+ </summary>
+ <remarks>
+ </remarks>
+ <history>
+ 	[monicatarello]	23/09/2008	Created 
+ </history></member>
+    <member name="F:RemotingInterfaceMotoreTarsu.MotoreTarsu.Oggetti.OggettoRuoloPerCalcoloCartelle._IdCodiceArticolo">
+      <summary>
+ La classe OggettoRuoloPerCalcoloCartelle contiene i dati dell'articoli per la cartella. 
+ </summary>
+ <remarks>
+ </remarks>
+ <history>
+ 	[monicatarello]	23/09/2008	Created 
+ </history></member>
+  </members>
+</doc>

@@ -1,0 +1,262 @@
+<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>Ruolo</name>
+    <version>1.0.3499.26077</version>
+    <fullname>Ruolo, Version=1.0.3499.26077, Culture=neutral, PublicKeyToken=null</fullname>
+  </assembly>
+  <members>
+    <member name="T:Ruolo.Ruolo.ClsElaboraRuolo">
+      <summary>
+ La classe ClsElaboraRuolo determina i singoli articoli da mandare a ruolo. 
+ </summary>
+ <remarks>
+ </remarks>
+ <history>
+ 	[monicatarello]	23/09/2008	Created 
+ </history></member>
+    <member name="M:Ruolo.Ruolo.ClsElaboraRuolo.CreaRuolo_AUTO_SUPPLETIVO(RemotingInterfaceMotoreTarsu.MotoreTarsu.Oggetti.OggettoDichiarazioneTARSURidDet[],RemotingInterfaceMotoreTarsu.MotoreTarsu.Oggetti.OggettoRuoloCreato)">
+      <summary>
+ La funzione, partendo dalle dichiarazioni TARSU e dal ruolo principale di riferimento, determina gli articoli completi di bimestri e importi che andranno a ruolo suppletivo.<br />
+ Si calcola il ruolo sulle dichiarazioni come se fosse principale, tramite la funzione CreaRuolo_AUTO_PRINCIPALE, e lo si confronta con quello di riferimento in ingresso.<br />
+ Ciclando si confrontano uno per uno gli articoli; 
+ se il nuovo importo calcolato è maggiore del precedente 
+ viene creato un articolo avente gli importi risultanti dalla differenza fra nuovo e originale di riferimento.<br />
+ </summary>
+ <param name="ArrayDichiarazioniRidDet">Array di oggetti di tipo OggettoDichiarazioneTARSURidDet contiene i dati per la generazione degli articoli.</param>
+ <param name="oRuoloPrincipaleCreato">Oggetto di tipo OggettoRuoloCreato contiene gli articoli principali di riferimento.</param>
+ <returns>
+ Oggetto di tipo OggettoRuoloCreato contiene gli articoli creati con relativi totalizzatori di ruolo.<br />
+ Il metodo restituisce <c>Nothing</c> se si è verificato un errore. 
+ </returns>
+ <remarks>
+ Per poter creare articoli da dichiarazioni corretti l'array di dichiarazioni in ingresso deve essere popolato con i dati ordinati per: 
+ - contribuente;<br />
+ - dettaglio testata;<br />
+ - categoria;<br />
+ - data inizio;<br />
+ - data fine.<br />
+ Gli array interni per il confronto fra nuovo calcolato e principale di riferimento sono ordinati all'interno della procedura per contribuente, dettaglio testata, categoria.<br />
+ </remarks>
+ <history>
+ 	[monicatarello]	22/09/2008	Created 
+ </history></member>
+    <member name="M:Ruolo.Ruolo.ClsElaboraRuolo.CreaRuolo_AUTO_PRINCIPALE(RemotingInterfaceMotoreTarsu.MotoreTarsu.Oggetti.OggettoDichiarazioneTARSURidDet[])">
+      <summary>
+ La funzione, partendo dalle dichiarazioni TARSU, determina gli articoli completi di bimestri e importi che andranno a ruolo.<br />
+ Ciclando su tutte le dichiarazioni TARSU passate alla funzione si determina un nuovo articolo a cambio di: 
+ - dettaglio testata;<br />
+ - categoria;<br />
+ - data inizio;<br />
+ - data fine.<br />
+ Se i dati non cambiano i metri sono sommati all'articolo in corso.<br />
+ Gli importi a ruolo sono derminati richiamando la funzione CalcolaImportiRuolo.<br />
+ </summary>
+ <param name="ArrayDichiarazioniRidDet">Array di oggetti di tipo OggettoDichiarazioneTARSURidDet contiene i dati per la generazione degli articoli.</param>
+ <returns>
+ Oggetto di tipo OggettoRuoloCreato contiene gli articoli creati con relativi totalizzatori di ruolo.<br />
+ Il metodo restituisce <c>Nothing</c> se si è verificato un errore. 
+ </returns>
+ <remarks>
+ Per poter creare articoli corretti l'array di dichiarazioni in ingresso deve essere popolato con i dati ordinati per: 
+ - contribuente;<br />
+ - dettaglio testata;<br />
+ - categoria;<br />
+ - data inizio;<br />
+ - data fine.<br />
+ </remarks>
+ <history>
+ 	[monicatarello]	22/09/2008	Created 
+ </history></member>
+    <member name="M:Ruolo.Ruolo.ClsElaboraRuolo.ValDatiArticolo(RemotingInterfaceMotoreTarsu.MotoreTarsu.Oggetti.OggettoDichiarazioneTARSU,RemotingInterfaceMotoreTarsu.MotoreTarsu.Oggetti.OggettoRiduzione[],RemotingInterfaceMotoreTarsu.MotoreTarsu.Oggetti.OggettoDetassazione[])">
+      <summary>
+ La funzione popola i dati base dell'articolo a ruolo. 
+ </summary>
+ <param name="oMyDichiarazione">Oggetto di tipo OggettoDichiarazioneTARSU contiene i dati da associare all'articolo.</param>
+ <param name="oListRiduzioni">Array di oggetti di tipo OggettoRiduzione contiene le riduzioni da associare all'articolo.</param>
+ <param name="oListDetrazioni">Array di oggetti di tipo OggettoDetassazione contiene le detassazioni da associare all'articolo.</param>
+ <returns>Oggetto di tipo OggettoArticoloRuolo contiene l'articolo creato.</returns>
+ <remarks>
+ </remarks>
+ <history>
+ 	[monicatarello]	23/09/2008	Created 
+ </history></member>
+    <member name="M:Ruolo.Ruolo.ClsElaboraRuolo.ValDatiArticolo(RemotingInterfaceMotoreTarsu.MotoreTarsu.Oggetti.OggettoArticoloRuolo,System.Double,System.Double,System.Double)">
+      <summary>
+ La funzione popola i dati dell'articolo a ruolo; gli importi sono determinati sottraendo i valori passati alla funzione nell'articolo con i corrispettivi originali. 
+ </summary>
+ <param name="oMyArticoloNew">Oggetto di tipo OggettoArticoloRuolo contiene l'articolo a ruolo da associare al nuovo articolo.</param>
+ <param name="impRuoloOrg">Decimale contiene l'importo articolo originale.</param>
+ <param name="impRidOrg">Decimale contiene l'importo riduzione originale.</param>
+ <param name="impDetOrg">Decimale contiene l'importo detassazione originale.</param>
+ <returns>Oggetto di tipo OggettoArticoloRuolo contiene l'articolo creato.</returns>
+ <remarks>
+ </remarks>
+ <history>
+ 	[monicatarello]	23/09/2008	Created 
+ </history></member>
+    <member name="M:Ruolo.Ruolo.ClsElaboraRuolo.ValImportiArticolo(RemotingInterfaceMotoreTarsu.MotoreTarsu.Oggetti.OggettoArticoloRuolo)">
+      <summary>
+ La funzione richiama la funzione per il calcolo degli importi dell'articolo. 
+ </summary>
+ <param name="oValArticolo">Oggetto di tipo OggettoArticoloRuolo contiene l'articolo sul quale calcolare gli importi.</param>
+ <returns>Oggetto di tipo OggettoArticoloRuolo contiene l'articolo con gli importi calcolati.</returns>
+ <remarks>
+ </remarks>
+ <history>
+ 	[monicatarello]	23/09/2008	Created 
+ </history></member>
+    <member name="M:Ruolo.Ruolo.ClsElaboraRuolo.ContaContrib(System.Int32,RemotingInterfaceMotoreTarsu.MotoreTarsu.Oggetti.OggettoDichiarazioneTARSU,System.Int32)">
+      <summary>
+ La funzione determina se il contribuente attuale è diverso dalla posizione precedente. 
+ </summary>
+ <param name="iCount">Intero indica se si è al primo giro.</param>
+ <param name="objDichiarazione">Oggetto di tipo OggettoDichiarazioneTARSU contiene il contribuente attuale.</param>
+ <param name="CODCONTRIBUENTE">Intero contiene il contribuente precedente.</param>
+ <returns>Intero<br />
+ Il metodo restituisce <c>0</c> se il contribuente è uguale al precedente; mentre restituisce <c>1</c> se è diverso.</returns>
+ <remarks>
+ </remarks>
+ <history>
+ 	[monicatarello]	23/09/2008	Created 
+ </history></member>
+    <member name="M:Ruolo.Ruolo.ClsElaboraRuolo.isPositionChanged(System.Int32,RemotingInterfaceMotoreTarsu.MotoreTarsu.Oggetti.OggettoDichiarazioneTARSU,System.Int32,System.String,System.DateTime,System.DateTime)">
+      <summary>
+ La funzione determina se i dati fondamentali per l'articolo della dichiarazione corrente sono diversi dalla posizione precedente. 
+ </summary>
+ <param name="iCount">Intero indica se si è al primo giro.</param>
+ <param name="objDichiarazione">Oggetto di tipo OggettoDichiarazioneTARSU contiene i dati della dichiarazione.</param>
+ <param name="IDDETTAGLIOTESTATA">Intero contiene l'identificativo del dettaglio testata precedente.</param>
+ <param name="IDCATEGORIA">Stringa contiene l'identificativo della categoria precedente.</param>
+ <param name="DATAINIZIO">Data contiene la data di inizio precedente.</param>
+ <param name="DATAFINE">Data contiene la data di inizio precedente.</param>
+ <returns>Intero<br />
+ Il metodo restituisce <c>0</c> se il contribuente è uguale al precedente; mentre restituisce <c>1</c> se è diverso.</returns>
+ <remarks>
+ </remarks>
+ <history>
+ 	[monicatarello]	23/09/2008	Created 
+ </history></member>
+    <member name="M:Ruolo.Ruolo.ClsElaboraRuolo.GetBimestri(System.DateTime,System.DateTime,System.Int32)">
+      <summary>
+ La funzione determina il numero di bimestri validi per l'articolo in base alla formula:<br />
+ Math.Floor(DateDiff(DateInterval.Month, tStart, tEnd) / 2).<br />
+ Si inizia a pagare dal bimestre solare successivo a quello di occupazione e si finisce al bimestre solare successivo la fine occupazione.<br />
+ </summary>
+ <param name="tStart">Data contiene la data di partenza per il calcolo.</param>
+ <param name="tEnd">Data contiene la data di fine per il calcolo.</param>
+ <param name="nAnnoBimestri">Intero contiene l'anno di calcolo.</param>
+ <returns>Intero contiene il numero di bimestri risultanti dal calcolo.</returns>
+ <remarks>
+ Se l'anno di calcolo è successivo alla data di partenza la data di partenza è pari a 31/12/nAnnoBimestri - 1.<br />
+ Se la data di partenza è un mese dispari deve essere considerata come se fosse il primo giorno del mese pari successivo.<br />
+ Se la data di fine non è presente o è successiva all'anno di calcolo è considerata pari a 31/12/nAnnoBimestri 
+ </remarks>
+ <history>
+ 	[monicatarello]	22/09/2008	Created 
+ </history></member>
+    <member name="T:Ruolo.ImportiRuolo.ClsImportiRuolo">
+      <summary>
+ La class ClsImportiRuolo determina gli importi dell'articolo a ruolo. 
+ </summary>
+ <remarks>
+ </remarks>
+ <history>
+ 	[monicatarello]	23/09/2008	Created 
+ </history></member>
+    <member name="M:Ruolo.ImportiRuolo.ClsImportiRuolo.CalcolaImportiRuolo(RemotingInterfaceMotoreTarsu.MotoreTarsu.Oggetti.OggettoArticoloRuolo@,RemotingInterfaceMotoreTarsu.MotoreTarsu.Oggetti.OggettoRiduzione[],RemotingInterfaceMotoreTarsu.MotoreTarsu.Oggetti.OggettoDetassazione[],System.Int32)">
+      <summary>
+ La funzione determina gli importi lordi e netti da inserire a ruolo per ogni articolo.<br />
+ L'oggetto OggettoArticoloRuolo contiene i dati di base per il calcolo:<br />
+  - base tempo,<br />
+  - metri quadri,<br />
+  - tariffa,<br />
+  - bimestri.<br />
+ L'oggetto OggettoRiduzione contiene tutte le eventuali riduzioni da applicare all'articolo.<br />
+ L'oggetto OggettoDetassazione contiene tutte le eventuali detassazioni da applicare all'articolo.<br /><br />
+ La funzione determina l'importo lordo a ruolo applicando la seguente formula:<br />
+ ((metri quadri * tariffa) * tempo) / base tempo<br /><br />
+ Sia l'importo di riduzione sia quello di detassazione sono calcolati sull'importo a ruolo in base alle diverse tipologie di appartenenza: percentuale, a valore fisso, a formula.<br />
+ La funzione può anche essere richiamata per calcolare singolarmente l'importo lordo dell'articolo piuttosto chè l'importo netto con relative riduzioni/detassazioni; 
+ nel secondo caso l'importo lordo dovrà già essere contenuto nell'OggettoArticoloRuolo originale.<br />
+ Una volta ottenuti gli importi desiderati, questi vengono inseriti nell'OggettoArticoloRuolo che è restituito al chiamante. 
+ </summary>
+ <param name="oMyArticolo">Restituisce un oggetto di tipo OggettoArticoloRuolo in ingresso contiene i dati per il calcolo.</param>
+ <param name="oMyRiduzioni">Array di oggetti di tipo OggettoRiduzione contiene le riduzioni da applicare.</param>
+ <param name="oMyDetrazioni">Array di oggetti di tipo OggettoDetassazione contiene le riduzioni da applicare.</param>
+ <param name="LevelCalcolo">Opzionale di tipo Intero con valore di default 0 indica quali importi calcolare.</param>
+ <returns>Boolean<br />
+ Il metodo restituisce <c>False</c> se si è verificato un errore; mentre restituisce <c>True</c> se il calcolo è avvenuto con successo. 
+ </returns>
+ <remarks>
+ Il parametro <c>LevelCalcolo</c> deve valere 0 se deve essere calcolato l'importo articolo, l'importo di riduzione, di detassazione e l'importo netto;<br />
+ deve valere 1 se deve essere calcolato solo l'importo articolo;<br />
+ deve valere 2 se deve essere calcolato solo l'importo di riduzione, di detassazione e l'importo netto.<br />
+ Se uno dei parametri per il calcolo è pari a zero la funzione non può procedere quindi l'importo articolo sarà pari a zero.<br />
+ L'importo di riduzione e di detassazione può valere al massimo l'importo articolo; di conseguenza se maggiore viene forzato pari all'importo articolo.<br />
+ L'importo netto può valere al massimo zero, di conseguenza se minore viene forzato pari a zero.<br />
+ Se l'importo a ruolo o il valore della riduzione/detassazione da applicare sono pari a zero non si può procedere al calcolo quindi l'importo di riduzione/detassazione sarà pari a zero.<br /><br />
+ Il calcolo di riduzione e detassazione in base a formula attualmente non è gestito.<br />
+ </remarks>
+ <history>
+ 	[monicatarello]	22/09/2008	Created 
+ </history></member>
+    <member name="M:Ruolo.ImportiRuolo.ClsImportiRuolo.CalcolaRuolo(System.Double,System.Double,System.Int32,System.Int32)">
+      <summary>
+ La funzione determina l'importo lordo a ruolo applicando la formula:<br />
+ ((metri quadri * tariffa) * tempo) / base tempo 
+ </summary>
+ <param name="nMq">Decimale contenente i metri quadri</param>
+ <param name="ImpTariffa">Decimale contenente la tariffa</param>
+ <param name="nTempo">Intero contenente il tempo su cui applicare la tariffa</param>
+ <param name="nBaseTempo">Intero contenente la base tempo per il rapporto</param>
+ <returns>
+ Decimale contenente l'importo risultante dal calcolo.<br />
+ Vale 0 in caso di errore. 
+ </returns>
+ <remarks>
+ Se uno dei parametri in ingresso è pari a zero la funzione non può procedere al calcolo quindi restituisce zero. 
+ </remarks>
+ <history>
+ 	[monicatarello]	22/09/2008	Created 
+ </history></member>
+    <member name="M:Ruolo.ImportiRuolo.ClsImportiRuolo.CalcolaRiduzioni(System.Double,System.String,System.String)">
+      <summary>
+ La funzione determina l'importo di riduzione sull'importo a ruolo in base alla tipologia di riduzione.<br />
+ La riduzione può essere di tipo percentuale, a valore fisso o a formula. 
+ </summary>
+ <param name="ImpRuolo">Decimale contenente l'importo lordo a ruolo</param>
+ <param name="sTipoValoreRid">Stringa contenente la tipologia di riduzione da applicare</param>
+ <param name="sValRiduzione">Striga contenente il valore della riduzione da applicare</param>
+ <returns>
+ Decimale contenente l'importo di riduzione risultante dal calcolo. 
+ Vale 0 in caso di errore. 
+ </returns>
+ <remarks>
+ Se l'importo a ruolo o il valore della riduzione da applicare sono pari a zero la funzione non può procedere al calcolo quindi restituisce zero. 
+ Il calcolo in base a formula attualmente non è gestito. 
+ </remarks>
+ <history>
+ 	[monicatarello]	22/09/2008	Created 
+ </history></member>
+    <member name="M:Ruolo.ImportiRuolo.ClsImportiRuolo.CalcolaDetrazioni(System.Double,System.String,System.String)">
+      <summary>
+ La funzione determina l'importo di detassazione sull'importo a ruolo in base alla tipologia di detassazione.<br />
+ La detassazione può essere di tipo percentuale, a valore fisso o a formula. 
+ </summary>
+ <param name="ImpRuolo">Decimale contenente l'importo lordo a ruolo</param>
+ <param name="sTipoValoreDet">Stringa contenente la tipologia di detassazione da applicare</param>
+ <param name="sValDetrazione">Striga contenente il valore della detassazione da applicare</param>
+ <returns>
+ Decimale contenente l'importo di detassazione risultante dal calcolo. 
+ Vale 0 in caso di errore. 
+ </returns>
+ <remarks>
+ Se l'importo a ruolo o il valore della detassazione da applicare sono pari a zero la funzione non può procedere al calcolo quindi restituisce zero. 
+ Il calcolo in base a formula attualmente non è gestito. 
+ </remarks>
+ <history>
+ 	[monicatarello]	22/09/2008	Created 
+ </history></member>
+  </members>
+</doc>
