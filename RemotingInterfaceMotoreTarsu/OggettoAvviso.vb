@@ -85,6 +85,9 @@ Namespace MotoreTarsuVARIABILE.Oggetti
         '*** 201809 Bollettazione Vigliano in OPENgov ***
         Private _TipoGenerazione As String = "D"
 
+
+
+
         Public Property IdFlusso() As Integer
             Get
                 Return _IdFlusso
@@ -1661,6 +1664,17 @@ Namespace MotoreTarsuVARIABILE.Oggetti
         Private _CodImmobile As String = ""
         Private _ProgImmobile As Integer = 0
         Private _Key As String = ""
+        '*** ***
+        Private _nImportoFissoRid As Double = 0
+        Public Property ImportoFissoRid() As Double
+            Get
+                Return _nImportoFissoRid
+            End Get
+            Set(ByVal Value As Double)
+                _nImportoFissoRid = Value
+            End Set
+        End Property
+
 
         Public Property Id() As Integer
             Get
