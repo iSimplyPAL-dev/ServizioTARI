@@ -36,6 +36,7 @@ Namespace MotoreTarsu.Oggetti
         Private _DataVariazione As Date = Nothing
         Private _DataCessazione As Date = Nothing
         Private _sOperatore As String = String.Empty
+        Private _nImportoFissoRid As Double = 0
 
         Public Property ID() As Integer
             Get
@@ -190,7 +191,14 @@ Namespace MotoreTarsu.Oggetti
                 _nMQ = Value
             End Set
         End Property
-
+        Public Property ImportoFissoRid() As Double
+            Get
+                Return _nImportoFissoRid
+            End Get
+            Set(ByVal Value As Double)
+                _nImportoFissoRid = Value
+            End Set
+        End Property
         Public Property NumGGTarsu() As Integer
             Get
                 Return _nGGTarsu
