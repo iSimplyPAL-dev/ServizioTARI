@@ -1665,6 +1665,7 @@ Namespace MotoreTarsuVARIABILE.Oggetti
         Private _ProgImmobile As Integer = 0
         Private _Key As String = ""
         '*** ***
+        ' BD 09/07/2021
         Private _nImportoFissoRid As Double = 0
         Public Property ImportoFissoRid() As Double
             Get
@@ -1674,7 +1675,7 @@ Namespace MotoreTarsuVARIABILE.Oggetti
                 _nImportoFissoRid = Value
             End Set
         End Property
-
+        ' BD 09/07/2021
 
         Public Property Id() As Integer
             Get
@@ -2952,6 +2953,19 @@ Namespace MotoreTarsuVARIABILE.Oggetti
         '*** 20141211 - legami PF-PV ***
         Private _idoggetto As Integer = 0
         Private _listpfpv() As ObjLegamePFPV = Nothing
+        'BD 09/07/2021
+        Private _ImportoFissoRid As Double = 0
+
+        Public Property ImportoFissoRid() As Double
+            Get
+                Return _ImportoFissoRid
+            End Get
+            Set(ByVal Value As Double)
+                _ImportoFissoRid = Value
+            End Set
+        End Property
+        'BD 09/07/2021
+
         '*** ***
         Public Property Id() As Integer
             Get

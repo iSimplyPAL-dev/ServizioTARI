@@ -586,8 +586,13 @@ Public Class TARSUVariabile
             End If
             '*** 20141211 - legami PF-PV ***
             oMyArticolo.idoggetto = oMyUI.Id
-            oMyArticolo.listpfvspv = oMyUI.listpfvspv
+            oMyArticolo.listpfvspv = oMyUI.ListPFvsPV
             '*** ***
+
+            'BD 09/07/2021
+            oMyArticolo.ImportoFissoRid = oMyUI.ImportoFissoRid
+            'BD 09/07/2021
+
             Return oMyArticolo
         Catch Err As Exception
             Log.Debug("Si è verificato un errore in CreaRuolooMyArticolo.AUTOoMyArticolo.PRINCIPALE::ValDatiArticolo::" & Err.Message)
